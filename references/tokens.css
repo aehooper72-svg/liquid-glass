@@ -1,0 +1,153 @@
+/*
+ * Liquid Glass Design System — CSS Custom Properties
+ * macOS-inspired translucent glass material
+ *
+ * Usage: import this file or copy the :root block into your project.
+ * All values are designed for dark-mode-first interfaces.
+ */
+
+:root {
+  /* ── Backgrounds ── */
+  --bg-primary:          #07080a;          /* near-black blue-tint, never pure black */
+  --bg-surface:          #101111;          /* elevated surface behind glass */
+
+  /* ── Glass Fills ── */
+  --glass-fill:          rgba(255, 255, 255, 0.04);
+  --glass-fill-hover:    rgba(255, 255, 255, 0.07);
+  --glass-fill-active:   rgba(255, 255, 255, 0.03);
+
+  /* ── Glass Borders ── */
+  --glass-border:        rgba(255, 255, 255, 0.06);
+  --glass-border-hover:  rgba(255, 255, 255, 0.12);
+
+  /* ── Inset Highlights ── */
+  --glass-inset-top:     rgba(255, 255, 255, 0.08);
+  --glass-inset-bottom:  rgba(0, 0, 0, 0.25);
+
+  /* ── Text ── */
+  --text-primary:        #f9f9f9;
+  --text-secondary:      #9c9c9d;
+  --text-tertiary:       #6a6b6c;
+
+  /* ── Accent ── */
+  --accent:              #FF6363;           /* punctuation accent, not pervasive */
+  --accent-interactive:  hsl(202, 100%, 67%);
+
+  /* ── Radii ── */
+  --radius-sm:           6px;
+  --radius-md:           12px;
+  --radius-lg:           16px;
+  --radius-pill:         86px;
+
+  /* ── Typography ── */
+  --font-family:         'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:           'Geist Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-weight-body:    500;              /* medium, not regular */
+  --letter-spacing:      0.2px;            /* positive on dark = airy */
+
+  /* ── Shadows ── */
+  --shadow-void:         none;
+  --shadow-subtle:       rgba(0, 0, 0, 0.28) 0px 1.189px 2.377px;
+  --shadow-ring:         rgb(27, 28, 30) 0px 0px 0px 1px,
+                         rgb(7, 8, 10) 0px 0px 0px 1px inset;
+  --shadow-glass:        rgba(0, 0, 0, 0.28) 0px 1px 3px,
+                         rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset,
+                         rgba(0, 0, 0, 0.25) 0px -1px 0px 0px inset;
+  --shadow-floating:     rgba(0, 0, 0, 0.5) 0px 0px 0px 2px,
+                         rgba(255, 255, 255, 0.19) 0px 0px 14px,
+                         rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset,
+                         rgba(0, 0, 0, 0.25) 0px -1px 0px 0px inset;
+
+  /* ── Animation ── */
+  --ease-entrance:       cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-micro:      200ms;
+  --duration-page:       600ms;
+}
+
+
+/* ── Typography Scale ── */
+
+.display   { font-size: 64px; font-weight: 600; line-height: 1.10; }
+.heading   { font-size: 24px; font-weight: 500; line-height: normal; }
+.subhead   { font-size: 20px; font-weight: 500; line-height: 1.60; }
+.body      { font-size: 16px; font-weight: 500; line-height: 1.60; }
+.caption   { font-size: 14px; font-weight: 500; line-height: 1.14; }
+.small     { font-size: 12px; font-weight: 600; line-height: 1.33; }
+
+
+/* ── Glass Panel Component ── */
+
+.glass-panel {
+  background: var(--glass-fill);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-body);
+  letter-spacing: var(--letter-spacing);
+}
+
+.glass-panel:hover {
+  background: var(--glass-fill-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow:
+    rgba(0, 0, 0, 0.35) 0px 2px 6px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px 0px inset,
+    rgba(0, 0, 0, 0.25) 0px -1px 0px 0px inset;
+}
+
+
+/* ── Interactive Glass Element ── */
+
+.glass-interactive {
+  background: var(--glass-fill);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+  cursor: pointer;
+  transition: background 200ms ease-out,
+              border-color 200ms ease-out,
+              box-shadow 200ms ease-out,
+              transform 200ms ease-out;
+}
+
+.glass-interactive:hover {
+  background: var(--glass-fill-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow:
+    rgba(0, 0, 0, 0.35) 0px 2px 6px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px 0px inset,
+    rgba(0, 0, 0, 0.25) 0px -1px 0px 0px inset;
+}
+
+.glass-interactive:focus-visible {
+  outline: none;
+  border-color: var(--accent-interactive);
+  box-shadow:
+    0 0 0 2px hsla(202, 100%, 67%, 0.15),
+    rgba(0, 0, 0, 0.28) 0px 1px 3px,
+    rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset,
+    rgba(0, 0, 0, 0.25) 0px -1px 0px 0px inset;
+}
+
+.glass-interactive:active {
+  background: var(--glass-fill-active);
+  transform: scale(0.98);
+}
+
+
+/* ── Reduced Motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-interactive {
+    transition: none;
+  }
+  .glass-interactive:active {
+    transform: none;
+  }
+}
